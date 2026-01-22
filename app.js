@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Load state from localStorage
 function loadState() {
-    const saved = localStorage.getItem('fitnessPalState');
+    const saved = localStorage.getItem('huckleBunFitnessMacroState');
     if (saved) {
         const parsed = JSON.parse(saved);
         // Only load if it's for today
@@ -71,7 +71,7 @@ function loadState() {
 
 // Save state to localStorage
 function saveState() {
-    localStorage.setItem('fitnessPalState', JSON.stringify(state));
+    localStorage.setItem('huckleBunFitnessMacroState', JSON.stringify(state));
 }
 
 // Main Navigation (Nutrients vs Body Measurements)
