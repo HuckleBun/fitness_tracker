@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyFitnessPal - Diet Tracking</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MyFitnessPal</h1>
+            <nav class="main-nav">
+                <button class="nav-btn main-nav-btn active" data-section="nutrients">Nutrients</button>
+                <button class="nav-btn main-nav-btn" data-section="measurements">Body Measurements</button>
+            </nav>
+        </div>
+        <div class="sub-nav-container" id="subNavContainer">
+            <div class="container">
+                <nav class="sub-nav">
+                    <button class="nav-btn sub-nav-btn active" data-page="dashboard">Dashboard</button>
+                    <button class="nav-btn sub-nav-btn" data-page="diary">Food Diary</button>
+                    <button class="nav-btn sub-nav-btn" data-page="myfoods">My Foods</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Nutrients Section -->
+        <div id="nutrientsSection" class="main-section active">
+            <!-- Dashboard Page -->
+            <section id="dashboard" class="page active">
+            <div class="dashboard-header">
+                <h2>Today's Summary</h2>
+                <div class="date-display" id="dateDisplay"></div>
+            </div>
+
+            <div class="nutrition-cards">
+                <div class="nutrition-card">
+                    <div class="card-header">
+                        <h3>Calories</h3>
+                        <span class="goal-badge">Goal: <span id="calorieGoal">2000</span></span>
+                    </div>
+                    <div class="progress-circle" id="calorieCircle">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                            <circle class="progress-bar" id="calorieProgress" cx="50" cy="50" r="45"></circle>
+                        </svg>
+                        <div class="progress-text">
+                            <span id="caloriesConsumed">0</span>
+                            <span class="progress-label">cal</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="remaining" id="caloriesRemaining">2000 remaining</span>
+                    </div>
+                </div>
+
+                <div class="nutrition-card">
+                    <div class="card-header">
+                        <h3>Macros</h3>
+                    </div>
+                    <div class="macro-bars">
+                        <div class="macro-item">
+                            <div class="macro-label">
+                                <span>Carbs</span>
+                                <span class="macro-amount" id="carbsAmount">0g</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill carbs" id="carbsBar" style="width: 0%"></div>
+                            </div>
+                            <span class="macro-goal" id="carbsGoal">250g goal</span>
+                        </div>
+                        <div class="macro-item">
+                            <div class="macro-label">
+                                <span>Protein</span>
+                                <span class="macro-amount" id="proteinAmount">0g</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill protein" id="proteinBar" style="width: 0%"></div>
+                            </div>
+                            <span class="macro-goal" id="proteinGoal">150g goal</span>
+                        </div>
+                        <div class="macro-item">
+                            <div class="macro-label">
+                                <span>Fat</span>
+                                <span class="macro-amount" id="fatAmount">0g</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill fat" id="fatBar" style="width: 0%"></div>
+                            </div>
+                            <span class="macro-goal" id="fatGoal">65g goal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <button class="action-btn" id="quickAddBtn">
+                    <span class="icon">+</span>
+                    <span>Quick Add</span>
+                </button>
+                <button class="action-btn" id="setGoalsBtn">
+                    <span class="icon">⚙️</span>
+                    <span>Set Goals</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Food Diary Page -->
+        <section id="diary" class="page">
+            <h2>Food Diary</h2>
+            
+            <div class="meals-container">
+                <div class="meal-section">
+                    <div class="meal-header">
+                        <h3>Breakfast</h3>
+                        <span class="meal-calories" id="breakfastCalories">0 cal</span>
+                    </div>
+                    <div class="food-list" id="breakfastList">
+                        <div class="empty-state">No foods added yet</div>
+                    </div>
+                    <button class="add-food-btn" data-meal="breakfast">+ Add Food</button>
+                </div>
+
+                <div class="meal-section">
+                    <div class="meal-header">
+                        <h3>Lunch</h3>
+                        <span class="meal-calories" id="lunchCalories">0 cal</span>
+                    </div>
+                    <div class="food-list" id="lunchList">
+                        <div class="empty-state">No foods added yet</div>
+                    </div>
+                    <button class="add-food-btn" data-meal="lunch">+ Add Food</button>
+                </div>
+
+                <div class="meal-section">
+                    <div class="meal-header">
+                        <h3>Dinner</h3>
+                        <span class="meal-calories" id="dinnerCalories">0 cal</span>
+                    </div>
+                    <div class="food-list" id="dinnerList">
+                        <div class="empty-state">No foods added yet</div>
+                    </div>
+                    <button class="add-food-btn" data-meal="dinner">+ Add Food</button>
+                </div>
+
+                <div class="meal-section">
+                    <div class="meal-header">
+                        <h3>Snacks</h3>
+                        <span class="meal-calories" id="snacksCalories">0 cal</span>
+                    </div>
+                    <div class="food-list" id="snacksList">
+                        <div class="empty-state">No foods added yet</div>
+                    </div>
+                    <button class="add-food-btn" data-meal="snacks">+ Add Food</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Foods Page -->
+        <section id="myfoods" class="page">
+            <div class="page-header">
+                <h2>My Foods</h2>
+                <button class="btn-primary" id="addCustomFoodBtn">+ Add Custom Food</button>
+            </div>
+            
+            <div class="search-container" style="margin-bottom: 20px;">
+                <input type="text" id="myFoodsSearch" placeholder="Search your foods..." class="search-input">
+            </div>
+
+            <div id="myFoodsList" class="my-foods-list"></div>
+        </section>
+        </div>
+
+        <!-- Body Measurements Section -->
+        <div id="measurementsSection" class="main-section">
+            <div class="page-header">
+                <h2>Body Measurements</h2>
+                <button class="btn-primary" id="addMeasurementBtn">+ Add Measurement</button>
+            </div>
+
+            <div class="measurements-container">
+                <div class="measurement-stats">
+                    <div class="stat-card">
+                        <div class="stat-label">Current Weight</div>
+                        <div class="stat-value" id="currentWeight">--</div>
+                        <div class="stat-unit">lbs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Body Fat %</div>
+                        <div class="stat-value" id="currentBodyFat">--</div>
+                        <div class="stat-unit">%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">BMI</div>
+                        <div class="stat-value" id="currentBMI">--</div>
+                        <div class="stat-unit"></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Water %</div>
+                        <div class="stat-value" id="currentWater">--</div>
+                        <div class="stat-unit">%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Muscle %</div>
+                        <div class="stat-value" id="currentMuscle">--</div>
+                        <div class="stat-unit">%</div>
+                    </div>
+                </div>
+
+                <div class="measurements-list-container">
+                    <h3>Measurement History</h3>
+                    <div id="measurementsList" class="measurements-list"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for Adding Food -->
+    <div id="foodModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Add Food</h2>
+            <div id="modalBody">
+                <!-- Content will be dynamically inserted -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Goals Modal -->
+    <div id="goalsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Set Daily Goals</h2>
+            <div class="goals-form">
+                <div class="form-group">
+                    <label for="calorieGoalInput">Calories</label>
+                    <input type="number" id="calorieGoalInput" min="0" value="2000">
+                </div>
+                <div class="form-group">
+                    <label for="carbsGoalInput">Carbs (g)</label>
+                    <input type="number" id="carbsGoalInput" min="0" value="250">
+                </div>
+                <div class="form-group">
+                    <label for="proteinGoalInput">Protein (g)</label>
+                    <input type="number" id="proteinGoalInput" min="0" value="150">
+                </div>
+                <div class="form-group">
+                    <label for="fatGoalInput">Fat (g)</label>
+                    <input type="number" id="fatGoalInput" min="0" value="65">
+                </div>
+                <button class="btn-primary" id="saveGoalsBtn">Save Goals</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Food Modal -->
+    <div id="customFoodModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="customFoodModalTitle">Add Custom Food</h2>
+            <div id="customFoodModalBody">
+                <!-- Content will be dynamically inserted -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Measurement Modal -->
+    <div id="measurementModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="measurementModalTitle">Add Body Measurement</h2>
+            <div id="measurementModalBody">
+                <!-- Content will be dynamically inserted -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
